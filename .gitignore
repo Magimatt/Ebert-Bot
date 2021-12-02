@@ -53,6 +53,7 @@ web_modules/
 
 # Optional eslint cache
 .eslintcache
+.eslintrc.json
 
 # Microbundle cache
 .rpt2_cache/
@@ -116,3 +117,6 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# bot.app config
+config.json
