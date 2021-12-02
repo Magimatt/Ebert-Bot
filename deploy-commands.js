@@ -11,15 +11,13 @@ const { clientId, guildId, token } = {
 // not needed after splitting commands into files
 // const { SlashCommandBuilder } = require('@discordjs/builders');
 
-// command instances
-const commands = [];
+// command .js files to commands json
 const commandFiles = fs.readdirSync('./commands')
     .filter(file => file.endsWith('.js'));
-
-for (const file of commandFiles) {
-    const command = require('./commands/${file}');
-    commands.push(command.data.toJSON());
-}
+const commands = commandFiles.map(file => {
+    const command = require(`./commands/${file}`);
+    return command.data.toJSON();
+});
 
 // set token and routes in REST
 const rest = new REST({ version: '9' }).setToken(token);

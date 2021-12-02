@@ -10,18 +10,18 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 // Commands collection
 client.commands = new Collection();
 const commonFiles = fs.readdirSync('./commands')
-    .filter(file => file.endsWith('.js'));
+    .filter((file) => file.endsWith('.js'));
 
-for (const file of commonFiles) {
-    const command = require('./commands/${file}');
+commonFiles.forEach(file => {
+    const command = require(`./commands/${file}`);
     // Set a new item in the Collection
     // With the key as the command name and the value as the exported module
     client.commands.set(command.data.name, command);
-}
+});
 
 // Client ready
 client.once('ready', () => {
-    console.log('Logged in as ${client.user.tag}!');
+    console.log(`Logged in as ${client.user.tag}!`);
     console.log('Ready!');
 });
 
