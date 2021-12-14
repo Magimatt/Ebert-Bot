@@ -1,3 +1,6 @@
 {
-    "Dune (1984)": "https://www.themoviedb.org/movie/841-dune"
+    "movies": [
+        {"moviename":"Dune", "year":"(1984)", "URL":"https://www.themoviedb.org/movie/841-dune"},
+        {"moviename":"Dune", "year":"(2021)", "URL":"https://www.themoviedb.org/movie/438631-dune"}
+    ]
 }

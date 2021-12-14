@@ -25,6 +25,7 @@ client.once('ready', () => {
     console.log('Ready!');
 });
 
+// Client#event:interactionCreate listener. Try to execute and catch error
 client.on('interactionCreate', async interaction => {
     if (!interaction.isCommand()) return;
 

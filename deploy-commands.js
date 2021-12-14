@@ -8,8 +8,6 @@ const { clientId, guildId, token } = {
     guildId: process.env.GUILD_ID,
     token: process.env.DISCORD_TOKEN
 };
-// not needed after splitting commands into files
-// const { SlashCommandBuilder } = require('@discordjs/builders');
 
 // command .js files to commands json
 const commandFiles = fs.readdirSync('./commands')
