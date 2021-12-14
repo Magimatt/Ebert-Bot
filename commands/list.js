@@ -1,31 +1,53 @@
 // Requires
-const { SlashCommandBuilder } = require('@discordjs/builders');
+const { SlashCommandBuilder, hyperlink } = require('@discordjs/builders');
 const { MessageEmbed } = require('discord.js');
-const movielist = require('../movielist.json')['movies'];
+const watchedjson = require('../movielist.json')['watched'];
+const unwatchedjson = require('../movielist.json')['unwatched'];
 
 // build the 'hello' command
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('list')
-        .setDescription('Provides the movie list.'),
+        .setDescription('Provides the watched/unwatched movie list.'),
+    
     async execute(interaction) {
-        // Create then fill movieArr with array of moviename, year, and URL from the movielist json
-        const movieArr = [];
-        movielist.forEach(movie => {
-            movieArr.push([ movie.moviename, movie.year, movie.URL ])
-        });
-
         // Build the embed
         const replyembed = new MessageEmbed()
             .setColor('#391f43')
             .setTitle('Podcast Movie List')
             .setDescription('This is the list of movies we will/have watched');
         
-        // fill the embed
-        movieArr.forEach(movie => {
-            replyembed.addField(movie[0] + ' ' + movie[1], movie[2]);
-        });
+        // build the watched and unwatched arrays
+        const watchedArr = buildMovieArray(watchedjson);
+        const unwatchedArr = buildMovieArray(unwatchedjson);
 
+        // take the movie arrays and make hyperlink strings for the field values
+        const watchedlinkstring = buildEmbedFieldValue(watchedArr);
+        const unwatchedlinkstring = buildEmbedFieldValue(unwatchedArr);
+        
+        // fill the watched and unwatched embed fields
+        replyembed.addField('Watched Movies', watchedlinkstring);
+        replyembed.addField('Unwatched Movies', unwatchedlinkstring);
+        
         await interaction.reply({ embeds: [replyembed] });
     },
+};
+
+// Create movie arrays with array of moviename, year, and URL from the movielist json
+function buildMovieArray(jsonObj) {
+    const arr = [];
+    jsonObj.forEach(movie => {
+        arr.push([movie.name, movie.year, movie.URL])
+    });
+    return arr;
+};
+
+// Store the embed field value as a list of hyperlinks
+function buildEmbedFieldValue(arr) {
+    const str = '';
+    arr.forEach(item => {
+        str += hyperlink(item[0] + ' ' + item[1], item[2]);
+        str += '\n';
+    });
+    return str;
 };
