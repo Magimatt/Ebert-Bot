@@ -7,14 +7,14 @@
  (OR 6000 MAX CHARACTERS IN THE EMBED).
 */
 
-// Requires
+// REQUIRES
 const { SlashCommandBuilder, hyperlink } = require('@discordjs/builders');
 const { MessageEmbed } = require('discord.js');
 const watchedjson = require('../movielist.json')['watched'];
 const unwatchedjson = require('../movielist.json')['unwatched'];
 
 
-// build the 'hello' command
+// this is what will be made available upon 'require' in the index.js
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('list')
@@ -76,6 +76,10 @@ module.exports = {
         await interaction.reply({ embeds: [replyembed] });
     },
 };
+
+//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
+//                              FUNCTIONS                                         \\
+//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
 
 // searchJSON helper func. returns boolean instead of .search()'s integers
 function containsString(str, condition) {
