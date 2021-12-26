@@ -3,7 +3,7 @@
         {"name":"Dune", "year":"(1984)", "URL":"https://www.themoviedb.org/movie/841-dune"},
         {"name":"Dune", "year":"(2021)", "URL":"https://www.themoviedb.org/movie/438631-dune"},
         {"name":"The Blob", "year":"(1958)", "URL":"https://www.themoviedb.org/movie/8851-the-blob"},
-        {"name":"The Blob", "year":"(1988)", "URL":"https://www.themoviedb.org/movie/9599-the-blob"},
+        {"name":"The Blob", "year":"(1988)", "URL":"https://www.themoviedb.org/movie/9599-the-blob"}
     ],
     "unwatched": [
         {"name":"When Harry Met Sally", "year":"(1989)", "URL":"https://www.themoviedb.org/movie/639-when-harry-met-sally"}
