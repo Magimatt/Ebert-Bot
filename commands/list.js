@@ -4,11 +4,12 @@ const { MessageEmbed } = require('discord.js');
 const watchedjson = require('../movielist.json')['watched'];
 const unwatchedjson = require('../movielist.json')['unwatched'];
 
+
 // build the 'hello' command
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('list')
-        .setDescription('Provides the watched/unwatched movie list.'),
+        .setDescription('The Watched and Unwatched movie lists.'),
     
     async execute(interaction) {
         // Build the embed
@@ -44,7 +45,7 @@ function buildMovieArray(jsonObj) {
 
 // Store the embed field value as a list of hyperlinks
 function buildEmbedFieldValue(arr) {
-    const str = '';
+    let str = '';
     arr.forEach(item => {
         str += hyperlink(item[0] + ' ' + item[1], item[2]);
         str += '\n';
